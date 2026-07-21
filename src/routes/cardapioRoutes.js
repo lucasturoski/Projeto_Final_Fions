@@ -13,7 +13,6 @@ router.get("/", async (req, res) => {
     }
 });
 
-
 router.post("/", verificarAdm, async (req, res) => {
     try {
         const novoItem = new Cardapio(req.body);
@@ -31,7 +30,6 @@ router.post("/", verificarAdm, async (req, res) => {
         });
     }
 });
-
 router.put("/:id", verificarAdm, async (req, res) => {
     try {
         const { id } = req.params;
@@ -82,6 +80,5 @@ router.delete("/:id", verificarAdm, async (req, res) => {
         });
     }
 });
-
 
 export default router;

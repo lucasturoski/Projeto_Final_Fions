@@ -14,7 +14,6 @@ router.get("/", async (req, res) => {
         });
     }
 });
-
 router.post("/", verificarAdm, async (req, res) => {
     try {
         const novoIngrediente = new Estoque(req.body);
