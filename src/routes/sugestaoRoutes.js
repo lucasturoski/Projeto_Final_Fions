@@ -50,6 +50,6 @@ router.delete("/:id", verificarAdm, async (req, res) => {
             erro: error.message
         });
     }
-});
+})
 
 export default router;
