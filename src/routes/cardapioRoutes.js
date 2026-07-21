@@ -1,5 +1,6 @@
 import express from "express";
 import Cardapio from "../models/Cardapio.js";
+import { verificarAdm } from "../middleware/auth.js";
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 
-router.post("/", async (req, res) => {
+router.post("/", verificarAdm, async (req, res) => {
     try {
         const novoItem = new Cardapio(req.body);
 
@@ -25,6 +26,57 @@ router.post("/", async (req, res) => {
         });
 
     } catch(error) {
+        res.status(500).json({
+            erro: error.message
+        });
+    }
+});
+
+router.put("/:id", verificarAdm, async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const item = await Cardapio.findByIdAndUpdate(
+            id,
+            req.body,
+            { new: true }
+        );
+
+        if (!item) {
+            return res.status(404).json({
+                mensagem: "Item não encontrado!"
+            });
+        }
+
+        res.json({
+            mensagem: "Item atualizado!",
+            item
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            erro: error.message
+        });
+    }
+});
+
+router.delete("/:id", verificarAdm, async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const item = await Cardapio.findByIdAndDelete(id);
+
+        if (!item) {
+            return res.status(404).json({
+                mensagem: "Item não encontrado!"
+            });
+        }
+
+        res.json({
+            mensagem: "Item removido com sucesso!"
+        });
+
+    } catch (error) {
         res.status(500).json({
             erro: error.message
         });
