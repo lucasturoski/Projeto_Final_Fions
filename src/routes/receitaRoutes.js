@@ -1,6 +1,6 @@
 import express from "express";
 import Receita from "../models/receita.js";
-import { verificarAdm } from "../middleware/auth.js";
+import { verificarAdm } from "../middleware/auth.js"
 
 const router = express.Router();
 

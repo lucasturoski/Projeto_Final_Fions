@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"
 
 const cardapioSchema = new mongoose.Schema({
     nome: {

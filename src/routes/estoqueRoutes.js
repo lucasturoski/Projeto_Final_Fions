@@ -1,4 +1,4 @@
-import express from "express";
+import express from "express"
 import Estoque from "../models/estoque.js";
 import { verificarAdm, verificarFuncionario } from "../middleware/auth.js";
 

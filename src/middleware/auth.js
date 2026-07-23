@@ -66,7 +66,7 @@ const obterTipoUsuario = (req) => {
     const usuarioToken = validarToken(token);
 
     if (usuarioToken?.tipo) {
-        return usuarioToken.tipo;
+        return usuarioToken.tipo
     }
 
     const cookies = parseCookies(req?.headers?.cookie || "");

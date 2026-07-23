@@ -3,7 +3,7 @@ import usuarioRoutes from "./src/routes/usuarioRoutes.js";
 import cardapioRoutes from "./src/routes/cardapioRoutes.js";
 import estoqueRoutes from "./src/routes/estoqueRoutes.js";
 import receitaRoutes from "./src/routes/receitaRoutes.js";
-import sugestaoRoutes from "./src/routes/sugestaoRoutes.js";
+import sugestaoRoutes from "./src/routes/sugestaoRoutes.js"
 
 const app = express();
 

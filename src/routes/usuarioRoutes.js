@@ -1,6 +1,6 @@
 import express from "express";
 import { SENHA_ADM, SENHA_FUNC } from "../config/senhas.js";
-import { criarToken } from "../middleware/auth.js";
+import { criarToken } from "../middleware/auth.js"
 
 const router = express.Router();
 

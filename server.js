@@ -19,4 +19,4 @@ const iniciarServidor = async () => {
     }
 };
 
-iniciarServidor();
+iniciarServidor()

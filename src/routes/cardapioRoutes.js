@@ -1,4 +1,4 @@
-import express from "express";
+import express from "express"
 import Cardapio from "../models/cardapio.js";
 import { verificarAdm } from "../middleware/auth.js";
 

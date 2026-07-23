@@ -9,4 +9,4 @@ const conectarBanco = async () => {
     }
 };
 
-export default conectarBanco;
+export default conectarBanco
