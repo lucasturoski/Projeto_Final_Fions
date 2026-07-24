@@ -4,10 +4,19 @@ import conectarBanco from "./src/config/db.js";
 
 dotenv.config();
 
-conectarBanco();
-
 const PORT = 3000;
 
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
+const iniciarServidor = async () => {
+    try {
+        await conectarBanco();
+
+        app.listen(PORT, () => {
+            console.log(`Servidor rodando na porta ${PORT}`);
+        });
+    } catch (error) {
+        console.error("Não foi possível iniciar o servidor:", error.message);
+        process.exit(1);
+    }
+};
+
+iniciarServidor();

@@ -1,5 +1,5 @@
 import express from "express";
-import Sugestao from "../models/Sugestao.js";
+import Sugestao from "../models/sugestao.js";
 import { verificarAdm, verificarFuncionario } from "../middleware/auth.js";
 
 const router = express.Router();
