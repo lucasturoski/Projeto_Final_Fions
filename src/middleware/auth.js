@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-export const verificarAdm = (req, res, next) => {
-    if (req.body.tipo === "adm") {
-=======
 import crypto from "crypto";
 
 const JWT_SECRET = process.env.JWT_SECRET || "gastro-bar-secret";
@@ -66,7 +62,7 @@ const obterTipoUsuario = (req) => {
     const usuarioToken = validarToken(token);
 
     if (usuarioToken?.tipo) {
-        return usuarioToken.tipo
+        return usuarioToken.tipo;
     }
 
     const cookies = parseCookies(req?.headers?.cookie || "");
@@ -74,15 +70,20 @@ const obterTipoUsuario = (req) => {
         return cookies.tipo;
     }
 
-    return req?.body?.tipo || req?.headers?.tipo || req?.headers?.["x-user-type"];
+    return req?.headers?.tipo || req?.headers?.["x-user-type"] || null;
 };
 
 export const verificarAdm = (req, res, next) => {
     const tipo = obterTipoUsuario(req);
 
+    if (!tipo) {
+        return res.status(401).json({
+            mensagem: "Token não encontrado ou inválido."
+        });
+    }
+
     if (tipo === "adm") {
         req.usuario = { tipo };
->>>>>>> e321493 (Arrumando)
         return next();
     }
 
@@ -92,25 +93,20 @@ export const verificarAdm = (req, res, next) => {
 };
 
 export const verificarFuncionario = (req, res, next) => {
-<<<<<<< HEAD
-    if (
-        req.body.tipo === "adm" ||
-        req.body.tipo === "funcionario"
-    ) {
-=======
     const tipo = obterTipoUsuario(req);
+
+    if (!tipo) {
+        return res.status(401).json({
+            mensagem: "Token não encontrado ou inválido."
+        });
+    }
 
     if (tipo === "adm" || tipo === "funcionario") {
         req.usuario = { tipo };
->>>>>>> e321493 (Arrumando)
         return next();
     }
 
     return res.status(403).json({
-<<<<<<< HEAD
-        mensagem: "Acesso negado."
-=======
         mensagem: "Acesso permitido apenas para funcionários ou administradores."
->>>>>>> e321493 (Arrumando)
     });
 };
