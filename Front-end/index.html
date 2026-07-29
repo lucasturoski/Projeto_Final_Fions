@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GastroBar - Experiência & Sofisticação</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="hero-header">
+    <div class="overlay"></div>
+    <div class="header-content">
+      <img src="cabeçalho.png" alt="GastroBar Banner" class="brand-logo">
+      <button class="btn-login-trigger" onclick="abrirModalLogin()">Acesso Restrito</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="view-cliente" class="section">
+      <h2 class="section-title">Nosso Cardápio</h2>
+      <p class="section-subtitle">Sinta o sabor de bebidas criadas com paixão e precisão artesanal.</p>
+      
+      <div id="grid-cardapio" class="cardapio-grid">
+        </div>
+
+      <hr class="divider">
+
+      <section class="sugestao-box">
+        <h3>Sua opinião é valiosa</h3>
+        <p class="sugestao-text">Aqui você pode deixar sua sugestão ou avaliação para nossos estabelecimento</p>
+        <form id="form-sugestao" onsubmit="enviarSugestao(event)">
+          <div class="form-group">
+            <input type="text" id="sug-nome" placeholder="Seu Nome" required>
+            <input type="tel" id="sug-telefone" placeholder="Seu Telefone de Contato" required>
+          </div>
+          <textarea id="sug-mensagem" placeholder="Deixe sua mensagem ou avaliação..." required></textarea>
+          <button type="submit" class="btn-submit">Enviar Sugestão</button>
+        </form>
+      </section>
+    </section>
+
+    <section id="view-painel" class="section hidden">
+      <div class="painel-header">
+        <h2 id="painel-titulo">Painel de Gestão</h2>
+        <button class="btn-logout" onclick="fazerLogout()">Sair do Painel</button>
+      </div>
+
+      <div id="modulo-estoque" class="modulo-box">
+        <h3>Gestão de Estoque de Bebidas</h3>
+        <form id="form-estoque" onsubmit="salvarItemEstoque(event)">
+          <input type="hidden" id="est-id">
+          <input type="text" id="est-nome" placeholder="Item / Bebida" required>
+          <input type="number" id="est-qtd" placeholder="Quantidade" required>
+          <input type="text" id="est-unidade" placeholder="Unidade (ex: garrafas, ml, un)" required>
+          <button type="submit" class="btn-action">Cadastrar / Atualizar Item</button>
+        </form>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Quantidade</th>
+              <th>Unidade</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-estoque"></tbody>
+        </table>
+      </div>
+
+      <div id="modulo-receitas" class="modulo-box hidden">
+        <h3>Receitas Secretas & Cardápio</h3>
+        <form id="form-receita" onsubmit="salvarReceita(event)" class="admin-only hidden">
+          <input type="text" id="rec-bebida" placeholder="Nome da Bebida" required>
+          <input type="number" step="0.01" id="rec-preco" placeholder="Preço (R$)" required>
+          <input type="text" id="rec-categoria" placeholder="Categoria (ex: Coquetéis, Doses)" required>
+          <input type="text" id="rec-imagem" placeholder="Nome da imagem (ex: mojito.png) ou deixe em branco">
+          <textarea id="rec-descricao" placeholder="Descrição da Bebida (Visível no Cardápio)" required></textarea>
+          <textarea id="rec-preparo" placeholder="Modo de Preparo (Apenas para Equipe)" required></textarea>
+          <input type="text" id="rec-ingredientes" placeholder="Ingredientes (separados por vírgula)" required>
+          <button type="submit" class="btn-action">Cadastrar Receita e Publicar no Cardápio</button>
+        </form>
+
+        <div id="lista-receitas" class="receitas-list"></div>
+      </div>
+
+      <div id="modulo-sugestoes" class="modulo-box">
+        <h3>Sugestões dos Clientes</h3>
+        <div id="lista-sugestoes" class="sugestoes-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal-login" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharModalLogin()">&times;</span>
+      <h3>Acesso Administrativo / Funcionário</h3>
+      <p>Digite seu perfil para autenticar no sistema:</p>
+      <input type="text" id="input-cargo" placeholder="Digite: 'adm' ou 'funcionario'">
+      <button class="btn-submit" onclick="autenticarUsuario()">Entrar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
